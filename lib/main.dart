@@ -12,6 +12,20 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'To-Do List',
+      theme: ThemeData(
+        primaryColor: const Color.fromARGB(255, 152, 112, 159), // soft purple
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 152, 112, 159)),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: const Color.fromARGB(255, 152, 112, 159), // soft purple
+            foregroundColor: Colors.white,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            padding: const EdgeInsets.symmetric(vertical: 15),
+          ),
+        ),
+      ),
       home: const TaskHelperPage(),
     );
   }
@@ -26,7 +40,7 @@ class TaskHelperPage extends StatefulWidget {
 
 class _TaskHelperPageState extends State<TaskHelperPage> {
   final TextEditingController _taskController = TextEditingController();
-  final List<String> _categories = ['Work', 'School', 'Personal','sport'];
+  final List<String> _categories = ['Work', 'School', 'Personal', 'sport'];
   String _selectedCategory = 'Work';
   List<String> _tasks = [];
 
@@ -39,7 +53,16 @@ class _TaskHelperPageState extends State<TaskHelperPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("To-Do List"), centerTitle: true),
+      appBar: AppBar(
+        title: const Text(
+          "To-Do List",
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+        ),
+        centerTitle: true,
+        backgroundColor: const Color.fromARGB(255, 144, 114, 149), // soft purple
+        elevation: 5,
+      ),
+      
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
