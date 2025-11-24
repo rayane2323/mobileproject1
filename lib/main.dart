@@ -25,6 +25,13 @@ class TaskHelperPage extends StatefulWidget {
 }
 
 class _TaskHelperPageState extends State<TaskHelperPage> {
+  final TextEditingController _taskController = TextEditingController();
+  @override
+  void dispose() {
+  _taskController.dispose();
+  super.dispose();
+}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,9 +39,20 @@ class _TaskHelperPageState extends State<TaskHelperPage> {
         title: const Text("To-Do List"),
         centerTitle: true,
       ),
-      body: const Center(
-        child: Text("Welcome to Task Helper!"),
+     body: Padding(
+  padding: const EdgeInsets.all(20),
+  child: Column(
+    children: [
+      TextField(
+        controller: _taskController,
+        decoration: const InputDecoration(
+          labelText: 'Enter Task',
+          border: OutlineInputBorder(),
+        ),
       ),
+    ],
+  ),
+),
     );
   }
 }
