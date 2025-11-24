@@ -28,6 +28,8 @@ class _TaskHelperPageState extends State<TaskHelperPage> {
   final TextEditingController _taskController = TextEditingController();
   final List<String> _categories = ['Work', 'School', 'Personal'];
   String _selectedCategory = 'Work';
+  List<String> _tasks = [];
+
   @override
   void dispose() {
     _taskController.dispose();
@@ -63,6 +65,19 @@ class _TaskHelperPageState extends State<TaskHelperPage> {
                         DropdownMenuItem<String>(value: cat, child: Text(cat)),
                   )
                   .toList(),
+            ),
+            const SizedBox(height: 10), // add space before button
+
+            ElevatedButton(
+              onPressed: () {
+                if (_taskController.text.isNotEmpty) {
+                  setState(() {
+                    _tasks.add("${_taskController.text} [$_selectedCategory]");
+                    _taskController.clear();
+                  });
+                }
+              },
+              child: const Text("Add Task"),
             ),
           ],
         ),
