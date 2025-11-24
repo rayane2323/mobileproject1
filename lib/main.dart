@@ -26,7 +26,7 @@ class TaskHelperPage extends StatefulWidget {
 
 class _TaskHelperPageState extends State<TaskHelperPage> {
   final TextEditingController _taskController = TextEditingController();
-  final List<String> _categories = ['Work', 'School', 'Personal'];
+  final List<String> _categories = ['Work', 'School', 'Personal','sport'];
   String _selectedCategory = 'Work';
   List<String> _tasks = [];
 
@@ -43,6 +43,7 @@ class _TaskHelperPageState extends State<TaskHelperPage> {
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             TextField(
               controller: _taskController,
@@ -78,6 +79,19 @@ class _TaskHelperPageState extends State<TaskHelperPage> {
                 }
               },
               child: const Text("Add Task"),
+            ),
+            const SizedBox(height: 10),
+            Expanded(
+              child: _tasks.isEmpty
+                  ? const Center(child: Text("No tasks yet"))
+                  : ListView.builder(
+                      itemCount: _tasks.length,
+                      itemBuilder: (context, index) {
+                        return Card(
+                          child: ListTile(title: Text(_tasks[index])),
+                        );
+                      },
+                    ),
             ),
           ],
         ),
