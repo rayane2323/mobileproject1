@@ -14,10 +14,17 @@ class MyApp extends StatelessWidget {
       title: 'To-Do List',
       theme: ThemeData(
         primaryColor: const Color.fromARGB(255, 152, 112, 159), // soft purple
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 152, 112, 159)),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color.fromARGB(255, 152, 112, 159),
+        ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-            backgroundColor: const Color.fromARGB(255, 152, 112, 159), // soft purple
+            backgroundColor: const Color.fromARGB(
+              255,
+              152,
+              112,
+              159,
+            ), // soft purple
             foregroundColor: Colors.white,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
@@ -59,10 +66,15 @@ class _TaskHelperPageState extends State<TaskHelperPage> {
           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
         ),
         centerTitle: true,
-        backgroundColor: const Color.fromARGB(255, 144, 114, 149), // soft purple
+        backgroundColor: const Color.fromARGB(
+          255,
+          144,
+          114,
+          149,
+        ), // soft purple
         elevation: 5,
       ),
-      
+
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
@@ -111,7 +123,25 @@ class _TaskHelperPageState extends State<TaskHelperPage> {
                       itemCount: _tasks.length,
                       itemBuilder: (context, index) {
                         return Card(
-                          child: ListTile(title: Text(_tasks[index])),
+                          color: const Color(0xFFE1BEE7), // light purple card
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          margin: const EdgeInsets.symmetric(vertical: 5),
+                          child: ListTile(
+                            title: Text(
+                              _tasks[index],
+                              style: const TextStyle(fontSize: 16),
+                            ),
+                            trailing: IconButton(
+                              icon: const Icon(Icons.delete, color: Colors.red),
+                              onPressed: () {
+                                setState(() {
+                                  _tasks.removeAt(index);
+                                });
+                              },
+                            ),
+                          ),
                         );
                       },
                     ),
