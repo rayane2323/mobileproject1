@@ -87,7 +87,9 @@ class _TaskHelperPageState extends State<TaskHelperPage> {
                 border: OutlineInputBorder(),
               ),
             ),
+
             const SizedBox(height: 10),
+
             DropdownButton<String>(
               value: _selectedCategory,
               onChanged: (String? value) {
@@ -102,6 +104,7 @@ class _TaskHelperPageState extends State<TaskHelperPage> {
                   )
                   .toList(),
             ),
+
             const SizedBox(height: 10), // add space before button
 
             ElevatedButton(
@@ -115,7 +118,46 @@ class _TaskHelperPageState extends State<TaskHelperPage> {
               },
               child: const Text("Add Task"),
             ),
+
             const SizedBox(height: 10),
+
+            ElevatedButton(
+              onPressed: () {
+                if (_tasks.isEmpty) {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        title: const Text("No Tasks"),
+                        content: const Text("There are no tasks to clear!"),
+                        actions: [
+                          TextButton(
+                            onPressed: () => Navigator.of(context).pop(),
+                            child: const Text("OK"),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                } else {
+                  setState(() {
+                    _tasks.clear();
+                  });
+                }
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.purple.shade300,
+                foregroundColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                padding: const EdgeInsets.symmetric(vertical: 15),
+              ),
+              child: const Text("Clear All Tasks"),
+            ),
+
+            const SizedBox(height: 10),
+
             Expanded(
               child: _tasks.isEmpty
                   ? const Center(child: Text("No tasks yet"))
