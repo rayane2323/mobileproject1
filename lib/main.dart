@@ -49,7 +49,7 @@ class _TaskHelperPageState extends State<TaskHelperPage> {
   final TextEditingController _taskController = TextEditingController();
   final List<String> _categories = ['Work', 'School', 'Personal', 'sport'];
   String _selectedCategory = 'Work';
-  List<String> _tasks = [];
+  final List<String> _tasks = [];
 
   @override
   void dispose() {
